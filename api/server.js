@@ -4,12 +4,12 @@ const models = require('./models');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 var stripe = require("stripe")("sk_test_bIkFI8h8wKbxKfX2paoXeDqe");
-app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
 app.use(cors());
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(express.json());
 
