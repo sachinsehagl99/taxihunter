@@ -1,9 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "database_development",
-    "host": "127.0.0.1",
+    "password": "kXhgGMgCiMj0rCxWQ27v",
+    "host": "starllysolutions.cpd5x8cannde.ap-south-1.rds.amazonaws.com",
+    "database": "taxihunter",
+    "operatorsAliases": false,
+    "logging": false,
     "dialect": "mysql"
   },
   "test": {
