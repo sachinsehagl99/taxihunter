@@ -1,6 +1,6 @@
 <div class="site-table-section mb-3">
   <div class="table-responsive">
-    <table style="font-size: 13px;" class="table row-border" id="dataTable" width="100%" cellspacing="0">
+    <table style="font-size: 13px;" class="table row-border" id="dataTable" width="80%" cellspacing="0">
       <thead>
         <tr>
           <th>Source</th>
@@ -13,9 +13,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="allSitesRowTable" *ngFor="let trip of allTrips">
-          <td>{{trip.source}}</td>
-          <td>{{trip.destination}}</td>
+        <tr class="allSitesRowTable" *ngFor="let trip of allTrips | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{trip.source | sortString}}</td>
+          <td>{{trip.destination | sortString}}</td>
           <td>{{trip.bookingStatus}}</td>
           <td>{{trip.createdAt | date:'short'}}</td>
           <td>{{trip.amount}}</td>
@@ -24,8 +24,8 @@
         </tr>
       </tbody>
     </table>
-    <!-- <div style="font-size: 13px; margin-left: 58%;">
+    <div style="font-size: 13px; margin-left: 35%;">
       <pagination-controls (pageChange)="p = $event" autoHide="false" (pageChange)="pageChanged($event)"></pagination-controls>
-    </div> -->
+    </div>
   </div>
 </div>

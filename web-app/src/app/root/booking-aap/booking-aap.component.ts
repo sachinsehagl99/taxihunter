@@ -35,7 +35,7 @@ export class BookingAapComponent implements OnInit, AfterViewInit {
   driver: any;
   trip: any;
   availability: string
-
+  p: any;
   submitted = false;
   onSubmit() { this.submitted = true; }
   showPayForm: boolean;
@@ -186,6 +186,8 @@ export class BookingAapComponent implements OnInit, AfterViewInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
+        this.destLat = position.coords.latitude;
+        this.destLgn = position.coords.latitude;
       });
     }
   }
@@ -264,8 +266,6 @@ export class BookingAapComponent implements OnInit, AfterViewInit {
       this.origin = '';
       this.destination = ''
       this.carType = -1;
-      this.lat = 0; this.lng = 0; this.destLat = 0; this.destLgn = 0;
-      this.searchControl = new FormControl();
       this.setCurrentPosition();
       this.getDirection();
       window.location.reload();

@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http/http.service';
 import { RootComponent } from './root/root.component';
 import { TripsComponent } from './root/trips/trips.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SortStringPipe } from './sort-string.pipe';
 
 
 const appRoute: Routes = [
@@ -31,6 +33,7 @@ const appRoute: Routes = [
     BookingAapComponent,
     RootComponent,
     TripsComponent,
+    SortStringPipe,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ const appRoute: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxStripeModule.forRoot('sk_test_bIkFI8h8wKbxKfX2paoXeDqe'),
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [PaymentService, HttpService],
   bootstrap: [AppComponent]
