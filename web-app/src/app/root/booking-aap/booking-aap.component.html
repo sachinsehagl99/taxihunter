@@ -1,0 +1,107 @@
+<!-- <agm-map [latitude]="lat" [longitude]="lng" [zoom]=15 (mapClick)="onChangeLocation($event);">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-direction [origin]="origin" [destination]="destination">
+  </agm-direction>
+</agm-map> -->
+
+<div class="container" style="margin-top:1%;">
+
+  <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]=16>
+    <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+    <agm-direction [origin]="origin" [destination]="destination">
+    </agm-direction>
+  </agm-map>
+  <!-- <h3>{{currentAddress}}</h3> -->
+  <br>
+  <div [hidden]="submitted" *ngIf="!showPayForm">
+    <form #locForm="ngForm">
+      <div class="form-group">
+        <input type="text" class="form-control" id="sourceLocation" placeholder="Enter source" name="sourceLocation"
+          ([ngModel])="sourceLocation" #searchSource [formControl]="searchControl" required>
+        <br>
+        <input type="text" class="form-control" id="destinationLocation" placeholder="Enter destination" name="destinationLocation"
+          ([ngModel])="destinationLocation" #searchDestination [formControl]="searchControl" required>
+      </div>
+    </form>
+  </div>
+  <div class="center-text">
+    <div class="row" *ngIf="!showPayForm">
+      <div class="col-lg-4" *ngIf="destinationLocation">
+        <select (change)="selectCar();" [(ngModel)]="carType" class="form-control" name="Role">
+          <option disabled value="-1">Choose car type</option>
+          <option value="1">Micro</option>
+          <option value="2">Mini</option>
+          <option value="3">Prime</option>
+          <option value="4">Lux</option>
+        </select>
+      </div>
+      <div class="col-lg-3" *ngIf="availability == 'Available'">
+        <button id="keyDownFunction" style="background:transparent;border:1px solid black;border-radius: 0" type="submit"
+          class="btn" routerLinkActive="active" (click)="searchCab();">{{distance }}
+          km, Rs {{ price}}</button>
+      </div>
+      <div *ngIf="availability == 'Available'" class="col-lg-2">
+        <button id="keyDownFunction" type="submit" class="btn btn-success" routerLinkActive="active" (click)="paymentForm();">Proceed
+          to pay
+        </button>
+      </div>
+      <div class="col-lg-3" *ngIf="availability == 'Note available'">
+        <button id="keyDownFunction" style="background:transparent;border:1px solid black;border-radius: 0" type="submit"
+          class="btn" routerLinkActive="active" (click)="searchCab();">
+          <span class="danger">Note available</span></button>
+      </div>
+      <!-- <div *ngIf="price" class="col-lg-3">
+        <button id="keyDownFunction" type="submit" class="btn btn-success" routerLinkActive="active" (click)="searchCab();">search
+          cab</button>
+      </div> -->
+    </div>
+    <!-- <button id="keyDownFunction" type="submit" class="btn btn-success" routerLinkActive="active" (click)="searchCab();">Get
+      Started</button>
+  </div> -->
+    <div class="row">
+      <div class="col-lg-4" *ngIf="showPayForm && !showStatus">
+        <form method="POST" (submit)="handleForm();">
+          <div #cardForm style="height:40px;">
+
+          </div>
+          <button class="btn btn-success">Pay Rs{{price}}</button>
+        </form>
+      </div>
+      <div *ngIf="showStatus" class="col-lg-4">
+        <span>Booking Status:&nbsp;<span style="color:rgb(49, 165, 107)"></span> {{carStatus}}</span>
+      </div>
+      <div *ngIf="showStatus" class="col-lg-4">
+        <button class="btn btn-danger" (click)="tripCancel();">Cancel</button>
+      </div>
+      <div *ngIf="showStatus" class="col-lg-4">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Report incident</button>
+      </div>
+      <div *ngIf="showStatus" class="col-lg-12">
+        <br>
+        Driver Name:&nbsp;{{driver.name}} &nbsp;&nbsp;&nbsp; Phone:&nbsp;{{driver.phone}}&nbsp;&nbsp;&nbsp; Car
+        number:&nbsp;{{driver.carModel}}
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <label for="exampleFormControlTextarea1">Send report</label>
+          <textarea [(ngModel)]="report" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="saveReport();">Submit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<br>
+<br>
+<br>

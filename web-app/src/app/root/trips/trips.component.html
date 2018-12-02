@@ -1,0 +1,31 @@
+<div class="site-table-section mb-3">
+  <div class="table-responsive">
+    <table style="font-size: 13px;" class="table row-border" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Booking status</th>
+          <th>Date and time</th>
+          <th>Amount</th>
+          <th>Amount status</th>
+          <th>Car type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="allSitesRowTable" *ngFor="let trip of allTrips">
+          <td>{{trip.source}}</td>
+          <td>{{trip.destination}}</td>
+          <td>{{trip.bookingStatus}}</td>
+          <td>{{trip.createdAt | date:'short'}}</td>
+          <td>{{trip.amount}}</td>
+          <td>{{trip.paymentStatus}}</td>
+          <td>{{trip.carType}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <div style="font-size: 13px; margin-left: 58%;">
+      <pagination-controls (pageChange)="p = $event" autoHide="false" (pageChange)="pageChanged($event)"></pagination-controls>
+    </div> -->
+  </div>
+</div>
