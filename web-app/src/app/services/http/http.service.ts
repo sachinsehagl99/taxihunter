@@ -7,41 +7,41 @@ import { catchError } from "rxjs/operators";
   providedIn: 'root'
 })
 export class HttpService {
-
+  baseUrl = "/";
   constructor(private http: HttpClient) { }
 
   tripBook(data, token): Observable<any> {
-    return this.http.post('http://localhost:3000/cab/book', data)
+    return this.http.post(this.baseUrl + 'cab/book', data)
       .pipe(catchError(error => of(error)));
   }
 
   tripCancel(id): Observable<any> {
-    return this.http.post('http://localhost:3000/cab/cancel', { id: id })
+    return this.http.post(this.baseUrl + 'cab/cancel', { id: id })
       .pipe(catchError(error => of(error)));
   }
 
   postReport(data): Observable<any> {
-    return this.http.post('http://localhost:3000/cab/report', data)
+    return this.http.post(this.baseUrl + 'cab/report', data)
       .pipe(catchError(error => of(error)));
   }
 
   getTrip(id): Observable<any> {
-    return this.http.get('http://localhost:3000/cab/trips?id=' + id)
+    return this.http.get(this.baseUrl + 'cab/trips?id=' + id)
       .pipe(catchError(error => of(error)));
   }
 
   createUser(data): Observable<any> {
-    return this.http.post('http://localhost:3000/cab/user', data)
+    return this.http.post(this.baseUrl + 'cab/user', data)
       .pipe(catchError(error => of(error)));
   }
 
   createDriver(data): Observable<any> {
-    return this.http.get('http://localhost:3000/cab/drive', data)
+    return this.http.get(this.baseUrl + 'cab/drive', data)
       .pipe(catchError(error => of(error)));
   }
 
   checkAvailability(data): Observable<any> {
-    return this.http.post('http://localhost:3000/cab/availability', data)
+    return this.http.post(this.baseUrl + 'cab/availability', data)
       .pipe(catchError(error => of(error)));
   }
 

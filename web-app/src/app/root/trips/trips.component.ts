@@ -11,6 +11,8 @@ export class TripsComponent implements OnInit {
 
   constructor(private httpService: HttpService) { }
   allTrips = [];
+  p: any;
+  pageChange: any
   ngOnInit() {
     this.getTrip();
   }

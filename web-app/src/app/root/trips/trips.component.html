@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="allSitesRowTable" *ngFor="let trip of allTrips | paginate: { itemsPerPage: 10, currentPage: p }">
+        <tr class="allSitesRowTable" *ngFor="let trip of allTrips">
           <td>{{trip.source | sortString}}</td>
           <td>{{trip.destination | sortString}}</td>
           <td>{{trip.bookingStatus}}</td>
@@ -24,8 +24,8 @@
         </tr>
       </tbody>
     </table>
-    <div style="font-size: 13px; margin-left: 35%;">
-      <pagination-controls (pageChange)="p = $event" autoHide="false" (pageChange)="pageChanged($event)"></pagination-controls>
-    </div>
+    <!-- <div style="font-size: 13px; margin-left: 35%;">
+      <pagination-controls (pageChange)="p = $event" autoHide=" false" (pageChange)="pageChanged($event)"></pagination-controls>
+    </div> -->
   </div>
 </div>

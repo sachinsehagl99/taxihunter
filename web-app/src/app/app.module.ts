@@ -16,9 +16,11 @@ import { RootComponent } from './root/root.component';
 import { TripsComponent } from './root/trips/trips.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SortStringPipe } from './sort-string.pipe';
+import { AuthGuard } from './services/auth.guard';
 
 
 const appRoute: Routes = [
+  { path: '', redirectTo: '/app/bookingApp', pathMatch: 'full', canActivate: [AuthGuard] },
   {
     path: 'app', component: RootComponent, children: [
       { path: 'bookingApp', component: BookingAapComponent },
